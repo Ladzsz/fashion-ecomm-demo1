@@ -4,6 +4,8 @@
 $ npm run deploy 
 to redeploy the app
 
+$ npm run test to run the tests
+
 npm run dev (og)
 
 # React + Vite

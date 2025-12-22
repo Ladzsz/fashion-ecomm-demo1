@@ -4,13 +4,15 @@ import { v4 as uuidv4 } from 'uuid'; // Add uuid via npm install uuid
 import CreateClient from './CreateClient';
 import MergeClients from './MergeClients';
 import ReferralTree from './ReferralTree';
-
+import OrderWizard from './OrderWizard';
+import OrderPipeline from './OrderPipeline';
 
 const AdminCRM = ({ crmData, updateCrmData }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showCreate, setShowCreate] = useState(false);
   const [showMerge, setShowMerge] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
+   const [showWizard, setShowWizard] = useState(false);
 
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
@@ -57,6 +59,11 @@ const AdminCRM = ({ crmData, updateCrmData }) => {
       {showMerge && <MergeClients crmData={crmData} updateCrmData={updateCrmData} onClose={() => setShowMerge(false)} />}
       <h3>Referral Network Visualization</h3>
       <ReferralTree crmData={crmData} />
+  
+<button onClick={() => setShowWizard(true)} className="btn-primary">New Order (Wizard)</button>
+{showWizard && <OrderWizard crmData={crmData} updateCrmData={updateCrmData} onClose={() => setShowWizard(false)} />}
+<h2>Order Pipeline (Kanban)</h2>
+<OrderPipeline crmData={crmData} updateCrmData={updateCrmData} />
     </div>
   );
 };

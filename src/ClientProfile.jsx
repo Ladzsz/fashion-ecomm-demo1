@@ -31,6 +31,13 @@ const ClientProfile = ({ crmData }) => {
             ))}
           </tbody>
         </table>
+<button onClick={() => {
+  const newMeas = prompt('Enter new chest measurement', measurements.chest);
+  if (newMeas) {
+    const updated = crmData.measurements.map(m => m.client_id === id ? { ...m, chest: Number(newMeas) } : m);
+    updateCrmData({ ...crmData, measurements: updated });
+  }
+}}>Edit Chest</button>
       </section>
       <section>
         <h3>Style Preferences</h3>
