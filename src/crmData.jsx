@@ -124,11 +124,36 @@ export const initialCrmData = {
       created_by: "admin", created_at: "2024-12-15T09:00:00Z"
     }
   ],
-  // Add to initialCrmData
-fabrics: [
-  { fabric_id: "f1", name: "BREZZA ZEPHIR", supplier: "Tessitura Monti", type: "Cotton", pattern: "Solid", color_primary: "Navy", weight: 120, swatch_photo: "https://via.placeholder.com/100?text=Navy+Cotton" },
-  { fabric_id: "f2", name: "BOEING POPELINE", supplier: "SICTESS", type: "Cotton", pattern: "Stripe", color_primary: "White", swatch_photo: "https://via.placeholder.com/100?text=White+Stripe" },
-  { fabric_id: "f3", name: "Super 150s Wool", supplier: "Other", type: "Wool", pattern: "Check", color_primary: "Gray", swatch_photo: "https://via.placeholder.com/100?text=Gray+Wool" }
-],
-// Orders already exist – ensure they have fabric_id, photos array, etc.
+   fabrics: [
+    { 
+      fabric_id: "f1", 
+      name: "BREZZA ZEPHIR", 
+      supplier: "Tessitura Monti", 
+      type: "Cotton", 
+      pattern: "Solid", 
+      color_primary: "Navy", 
+      weight: 120, 
+      swatch_photo: "https://via.placeholder.com/100?text=Navy+Cotton" 
+    },
+    { 
+      fabric_id: "f2", 
+      name: "BOEING POPELINE", 
+      supplier: "SICTESS", 
+      type: "Cotton", 
+      pattern: "Stripe", 
+      color_primary: "White", 
+      weight: 110,
+      swatch_photo: "https://via.placeholder.com/100?text=White+Stripe" 
+    },
+    { 
+      fabric_id: "f3", 
+      name: "Super 150s Wool", 
+      supplier: "Other", 
+      type: "Wool", 
+      pattern: "Check", 
+      color_primary: "Gray", 
+      weight: 130,
+      swatch_photo: "https://via.placeholder.com/100?text=Gray+Wool" 
+    }
+  ]
 };

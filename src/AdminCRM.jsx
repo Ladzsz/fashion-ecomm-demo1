@@ -6,6 +6,9 @@ import MergeClients from './MergeClients';
 import ReferralTree from './ReferralTree';
 import OrderWizard from './OrderWizard';
 import OrderPipeline from './OrderPipeline';
+import { initialCrmData } from './crmData';
+
+
 
 const AdminCRM = ({ crmData, updateCrmData }) => {
   const [searchQuery, setSearchQuery] = useState('');

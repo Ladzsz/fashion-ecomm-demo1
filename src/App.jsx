@@ -18,6 +18,31 @@ const App = () => {
   const [crmData, setCrmData] = useState(initialCrmData);
   const [loading, setLoading] = useState(true);
 
+  //debugging
+  useEffect(() => {
+  console.log('Initial CRM data loaded:', initialCrmData);
+  console.log('Does initialCrmData have fabrics?', 'fabrics' in initialCrmData);
+  console.log('Fabrics array:', initialCrmData.fabrics);
+  
+  const storedCrm = localStorage.getItem('crmData');
+  if (storedCrm) {
+    try {
+      const parsed = JSON.parse(storedCrm);
+      console.log('Parsed CRM from localStorage:', parsed);
+      console.log('Parsed CRM fabrics:', parsed.fabrics);
+      setCrmData(parsed);
+    } catch (e) {
+      console.error('Failed to parse stored CRM data:', e);
+      setCrmData(initialCrmData);
+    }
+  } else {
+    localStorage.setItem('crmData', JSON.stringify(initialCrmData));
+  }
+  setLoading(false);
+}, []);
+
+  //end debugging
+
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
