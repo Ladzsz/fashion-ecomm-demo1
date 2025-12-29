@@ -16,8 +16,8 @@ const AdminCRM = ({ crmData, updateCrmData }) => {
   const [showCreate, setShowCreate] = useState(false);
   const [showMerge, setShowMerge] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
-   const [showWizard, setShowWizard] = useState(false);
-   const [showAppointment, setShowAppointment] = useState(false);
+  const [showWizard, setShowWizard] = useState(false);
+  const [showAppointment, setShowAppointment] = useState(false);
   const [editingAppointment, setEditingAppointment] = useState(null);
 
   const handleSearch = (e) => {
