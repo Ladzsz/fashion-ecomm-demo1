@@ -125,49 +125,65 @@ const handleSubmit = () => {
     >
       <h3>{isEdit ? 'Edit' : 'New'} Appointment</h3>
 
-      <div style={{ marginBottom: '15px' }}>
-        <label>Client</label>
-        <select name="client_id" value={formData.client_id} onChange={handleChange} style={{ width: '100%', padding: '8px' }}>
-          <option value="">Select Client</option>
-          {crmData.clients.map((c) => (
-            <option key={c.client_id} value={c.client_id}>
-              {c.first_name} {c.last_name}
-            </option>
-          ))}
-        </select>
-      </div>
+      // Updated src/CreateAppointment.jsx – add htmlFor and id attributes
 
-      <div style={{ marginBottom: '15px' }}>
-        <label>Type (Duration)</label>
-        <select name="type" value={formData.type} onChange={handleChange} style={{ width: '100%', padding: '8px' }}>
-          {appointmentTypes.map((t) => (
-            <option key={t} value={t}>
-              {t} ({durations[t]} min)
-            </option>
-          ))}
-        </select>
-      </div>
+<div style={{ marginBottom: '15px' }}>
+  <label htmlFor="client-select">Client</label>
+  <select
+    id="client-select"
+    name="client_id"
+    value={formData.client_id}
+    onChange={handleChange}
+    style={{ width: '100%', padding: '8px' }}
+  >
+    <option value="">Select Client</option>
+    {crmData.clients.map((c) => (
+      <option key={c.client_id} value={c.client_id}>
+        {c.first_name} {c.last_name}
+      </option>
+    ))}
+  </select>
+</div>
 
-      <div style={{ marginBottom: '15px' }}>
-        <label>Date & Time</label>
-        <input
-          type="datetime-local"
-          name="start_time"
-          value={formData.start_time}
-          onChange={handleChange}
-          style={{ width: '100%', padding: '8px' }}
-        />
-      </div>
+<div style={{ marginBottom: '15px' }}>
+  <label htmlFor="type-select">Type (Duration)</label>
+  <select
+    id="type-select"
+    name="type"
+    value={formData.type}
+    onChange={handleChange}
+    style={{ width: '100%', padding: '8px' }}
+  >
+    {appointmentTypes.map((t) => (
+      <option key={t} value={t}>
+        {t} ({durations[t]} min)
+      </option>
+    ))}
+  </select>
+</div>
 
-      <div style={{ marginBottom: '15px' }}>
-        <label>Notes (optional)</label>
-        <textarea
-          name="notes"
-          value={formData.notes}
-          onChange={handleChange}
-          style={{ width: '100%', padding: '8px', height: '80px' }}
-        />
-      </div>
+<div style={{ marginBottom: '15px' }}>
+  <label htmlFor="datetime-input">Date & Time</label>
+  <input
+    id="datetime-input"
+    type="datetime-local"
+    name="start_time"
+    value={formData.start_time}
+    onChange={handleChange}
+    style={{ width: '100%', padding: '8px' }}
+  />
+</div>
+
+<div style={{ marginBottom: '15px' }}>
+  <label htmlFor="notes-textarea">Notes (optional)</label>
+  <textarea
+    id="notes-textarea"
+    name="notes"
+    value={formData.notes}
+    onChange={handleChange}
+    style={{ width: '100%', padding: '8px', height: '80px' }}
+  />
+</div>
 
       {error && <p style={{ color: 'red', margin: '10px 0' }}>{error}</p>}
 
