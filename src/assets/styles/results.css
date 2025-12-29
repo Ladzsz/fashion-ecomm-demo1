@@ -1,0 +1,9 @@
+.results-grid {
+  padding: 20px;
+}
+
+.results-card {
+  list-style-type: none;
+  border: 5px solid black;
+  padding: 10px;
+}
