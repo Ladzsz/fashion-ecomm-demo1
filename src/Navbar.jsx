@@ -81,6 +81,7 @@ const Navbar = ({ isLoggedIn, isAdmin, handleLogout }) => {
           </>
         ) : (
           <>
+            <Link to="/search" style={{ color: 'white', textDecoration: 'none' }}>Search</Link>
             <Link to="/login" style={{ color: 'white', textDecoration: 'none' }}>Login</Link>
             <Link to="/register" style={{ color: 'white', textDecoration: 'none' }}>Register</Link>
           </>

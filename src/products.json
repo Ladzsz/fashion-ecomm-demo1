@@ -1,0 +1,686 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Classic Black Leather Jacket",
+      "description": "Timeless black leather jacket with zip closure and tailored fit.",
+      "brandId": "urbanedge",
+      "categoryId": "jackets",
+      "gender": "men",
+      "price": 249.99,
+      "salePrice": 199.99,
+      "currency": "USD",
+      "rating": 4.6,
+      "reviewCount": 182,
+      "keywords": ["leather jacket", "black jacket", "men outerwear"],
+      "tags": ["leather", "classic", "zip-up", "fall"],
+      "images": [
+        "/images/products/ue-leather-jacket-black-1.jpg",
+        "/images/products/ue-leather-jacket-black-2.jpg"
+      ],
+      "variants": [
+        { "sku": "UE-LJ-BLK-S", "size": "S", "color": "Black", "inventory": 8 },
+        {
+          "sku": "UE-LJ-BLK-M",
+          "size": "M",
+          "color": "Black",
+          "inventory": 14
+        },
+        {
+          "sku": "UE-LJ-BLK-L",
+          "size": "L",
+          "color": "Black",
+          "inventory": 12
+        },
+        {
+          "sku": "UE-LJ-BLK-XL",
+          "size": "XL",
+          "color": "Black",
+          "inventory": 8
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "name": "Slim Fit Blue Denim Jeans",
+      "description": "Comfort stretch denim jeans in a modern slim fit.",
+      "brandId": "denimco",
+      "categoryId": "jeans",
+      "gender": "men",
+      "price": 79.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.3,
+      "reviewCount": 96,
+      "keywords": ["blue jeans", "slim jeans", "denim pants"],
+      "tags": ["denim", "slim-fit", "everyday"],
+      "images": ["/images/products/denim-jeans-blue.jpg"],
+      "variants": [
+        {
+          "sku": "DC-JE-BLU-30",
+          "size": "30",
+          "color": "Blue",
+          "inventory": 25
+        },
+        {
+          "sku": "DC-JE-BLU-32",
+          "size": "32",
+          "color": "Blue",
+          "inventory": 30
+        },
+        {
+          "sku": "DC-JE-BLU-34",
+          "size": "34",
+          "color": "Blue",
+          "inventory": 40
+        },
+        {
+          "sku": "DC-JE-BLU-36",
+          "size": "36",
+          "color": "Blue",
+          "inventory": 25
+        }
+      ]
+    },
+
+    {
+      "id": 3,
+      "name": "White Cotton Crewneck T-Shirt",
+      "description": "Soft breathable cotton t-shirt for everyday wear.",
+      "brandId": "essentialwear",
+      "categoryId": "tops",
+      "gender": "unisex",
+      "price": 19.99,
+      "salePrice": 14.99,
+      "currency": "USD",
+      "rating": 4.1,
+      "reviewCount": 240,
+      "keywords": ["white t-shirt", "cotton tee", "basic shirt"],
+      "tags": ["basic", "cotton", "layering"],
+      "images": ["/images/products/tshirt-white.jpg"],
+      "variants": [
+        {
+          "sku": "EW-TS-WHT-XS",
+          "size": "XS",
+          "color": "White",
+          "inventory": 40
+        },
+        {
+          "sku": "EW-TS-WHT-S",
+          "size": "S",
+          "color": "White",
+          "inventory": 55
+        },
+        {
+          "sku": "EW-TS-WHT-M",
+          "size": "M",
+          "color": "White",
+          "inventory": 70
+        },
+        {
+          "sku": "EW-TS-WHT-L",
+          "size": "L",
+          "color": "White",
+          "inventory": 65
+        },
+        {
+          "sku": "EW-TS-WHT-XL",
+          "size": "XL",
+          "color": "White",
+          "inventory": 50
+        }
+      ]
+    },
+
+    {
+      "id": 4,
+      "name": "Oversized Hoodie",
+      "description": "Relaxed-fit hoodie with fleece lining for warmth.",
+      "brandId": "streetform",
+      "categoryId": "hoodies",
+      "gender": "unisex",
+      "price": 59.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.5,
+      "reviewCount": 134,
+      "keywords": ["oversized hoodie", "fleece hoodie"],
+      "tags": ["streetwear", "oversized", "casual"],
+      "images": ["/images/products/hoodie-gray.jpg"],
+      "variants": [
+        { "sku": "SF-HD-GRY-M", "size": "M", "color": "Gray", "inventory": 18 },
+        { "sku": "SF-HD-GRY-L", "size": "L", "color": "Gray", "inventory": 20 },
+        {
+          "sku": "SF-HD-BLK-M",
+          "size": "M",
+          "color": "Black",
+          "inventory": 17
+        },
+        { "sku": "SF-HD-BLK-L", "size": "L", "color": "Black", "inventory": 20 }
+      ]
+    },
+
+    {
+      "id": 5,
+      "name": "Tailored Navy Blazer",
+      "description": "Sharp tailored blazer suitable for work or evenings.",
+      "brandId": "modernsuit",
+      "categoryId": "blazers",
+      "gender": "men",
+      "price": 179.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.7,
+      "reviewCount": 88,
+      "keywords": ["navy blazer", "tailored blazer", "formal jacket"],
+      "tags": ["formal", "workwear"],
+      "images": ["/images/products/blazer-navy.jpg"],
+      "variants": [
+        { "sku": "MS-BL-NVY-S", "size": "S", "color": "Navy", "inventory": 6 },
+        { "sku": "MS-BL-NVY-M", "size": "M", "color": "Navy", "inventory": 10 },
+        { "sku": "MS-BL-NVY-L", "size": "L", "color": "Navy", "inventory": 12 },
+        { "sku": "MS-BL-NVY-XL", "size": "XL", "color": "Navy", "inventory": 6 }
+      ]
+    },
+
+    {
+      "id": 6,
+      "name": "Floral Summer Dress",
+      "description": "Lightweight floral dress with a flattering silhouette.",
+      "brandId": "sunmuse",
+      "categoryId": "dresses",
+      "gender": "women",
+      "price": 89.99,
+      "salePrice": 69.99,
+      "currency": "USD",
+      "rating": 4.4,
+      "reviewCount": 67,
+      "keywords": ["floral dress", "summer dress"],
+      "tags": ["summer", "floral", "lightweight"],
+      "images": ["/images/products/floral-dress.jpg"],
+      "variants": [
+        { "sku": "SM-DR-RED-S", "size": "S", "color": "Red", "inventory": 14 },
+        { "sku": "SM-DR-RED-M", "size": "M", "color": "Red", "inventory": 18 },
+        {
+          "sku": "SM-DR-YLW-S",
+          "size": "S",
+          "color": "Yellow",
+          "inventory": 10
+        },
+        {
+          "sku": "SM-DR-YLW-M",
+          "size": "M",
+          "color": "Yellow",
+          "inventory": 16
+        }
+      ]
+    },
+
+    {
+      "id": 7,
+      "name": "High-Waisted Black Leggings",
+      "description": "Stretchy high-rise leggings for comfort and movement.",
+      "brandId": "flexfit",
+      "categoryId": "activewear",
+      "gender": "women",
+      "price": 49.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.6,
+      "reviewCount": 210,
+      "keywords": ["black leggings", "active leggings"],
+      "tags": ["activewear", "gym", "stretch"],
+      "images": ["/images/products/leggings-black.jpg"],
+      "variants": [
+        {
+          "sku": "FF-LG-BLK-XS",
+          "size": "XS",
+          "color": "Black",
+          "inventory": 30
+        },
+        {
+          "sku": "FF-LG-BLK-S",
+          "size": "S",
+          "color": "Black",
+          "inventory": 40
+        },
+        {
+          "sku": "FF-LG-BLK-M",
+          "size": "M",
+          "color": "Black",
+          "inventory": 55
+        },
+        {
+          "sku": "FF-LG-BLK-L",
+          "size": "L",
+          "color": "Black",
+          "inventory": 45
+        },
+        {
+          "sku": "FF-LG-BLK-XL",
+          "size": "XL",
+          "color": "Black",
+          "inventory": 30
+        }
+      ]
+    },
+
+    {
+      "id": 8,
+      "name": "Running Sneakers",
+      "description": "Lightweight sneakers designed for everyday runs.",
+      "brandId": "stride",
+      "categoryId": "shoes",
+      "gender": "unisex",
+      "price": 119.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.5,
+      "reviewCount": 154,
+      "keywords": ["running shoes", "sneakers"],
+      "tags": ["athletic", "running"],
+      "images": ["/images/products/running-sneakers.jpg"],
+      "variants": [
+        {
+          "sku": "ST-SN-WHT-8",
+          "size": "8",
+          "color": "White",
+          "inventory": 15
+        },
+        {
+          "sku": "ST-SN-WHT-9",
+          "size": "9",
+          "color": "White",
+          "inventory": 20
+        },
+        {
+          "sku": "ST-SN-GRY-10",
+          "size": "10",
+          "color": "Gray",
+          "inventory": 18
+        },
+        {
+          "sku": "ST-SN-GRY-11",
+          "size": "11",
+          "color": "Gray",
+          "inventory": 12
+        }
+      ]
+    },
+
+    {
+      "id": 9,
+      "name": "Brown Leather Chelsea Boots",
+      "description": "Classic Chelsea boots crafted from genuine leather.",
+      "brandId": "heritage",
+      "categoryId": "shoes",
+      "gender": "men",
+      "price": 199.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.8,
+      "reviewCount": 92,
+      "keywords": ["chelsea boots", "leather boots"],
+      "tags": ["leather", "classic", "boots"],
+      "images": ["/images/products/chelsea-boots-brown.jpg"],
+      "variants": [
+        {
+          "sku": "HT-BT-BRN-9",
+          "size": "9",
+          "color": "Brown",
+          "inventory": 10
+        },
+        {
+          "sku": "HT-BT-BRN-10",
+          "size": "10",
+          "color": "Brown",
+          "inventory": 14
+        },
+        {
+          "sku": "HT-BT-BRN-11",
+          "size": "11",
+          "color": "Brown",
+          "inventory": 12
+        }
+      ]
+    },
+
+    {
+      "id": 10,
+      "name": "Wool Knit Beanie",
+      "description": "Warm knit beanie made from premium wool.",
+      "brandId": "coldnorth",
+      "categoryId": "accessories",
+      "gender": "unisex",
+      "price": 24.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.2,
+      "reviewCount": 58,
+      "keywords": ["wool beanie", "knit hat"],
+      "tags": ["winter", "wool"],
+      "images": ["/images/products/beanie.jpg"],
+      "variants": [
+        {
+          "sku": "CN-BN-BLK-OS",
+          "size": "One Size",
+          "color": "Black",
+          "inventory": 40
+        },
+        {
+          "sku": "CN-BN-CHR-OS",
+          "size": "One Size",
+          "color": "Charcoal",
+          "inventory": 35
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Striped Button-Down Shirt",
+      "description": "Crisp cotton button-down shirt with subtle vertical stripes.",
+      "brandId": "officeline",
+      "categoryId": "tops",
+      "gender": "men",
+      "price": 69.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.3,
+      "reviewCount": 74,
+      "keywords": ["striped shirt", "button-down shirt", "office shirt"],
+      "tags": ["workwear", "cotton", "classic"],
+      "images": ["/images/products/striped-shirt.jpg"],
+      "variants": [
+        { "sku": "OL-SH-BLU-S", "size": "S", "color": "Blue", "inventory": 14 },
+        { "sku": "OL-SH-BLU-M", "size": "M", "color": "Blue", "inventory": 22 },
+        {
+          "sku": "OL-SH-WHT-M",
+          "size": "M",
+          "color": "White",
+          "inventory": 18
+        },
+        { "sku": "OL-SH-WHT-L", "size": "L", "color": "White", "inventory": 16 }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Relaxed Fit Chinos",
+      "description": "Comfortable chinos with a relaxed modern fit.",
+      "brandId": "everyday",
+      "categoryId": "pants",
+      "gender": "men",
+      "price": 89.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.4,
+      "reviewCount": 61,
+      "keywords": ["chinos", "casual pants", "relaxed fit pants"],
+      "tags": ["casual", "workwear"],
+      "images": ["/images/products/chinos.jpg"],
+      "variants": [
+        {
+          "sku": "ED-CH-KHK-32",
+          "size": "32",
+          "color": "Khaki",
+          "inventory": 20
+        },
+        {
+          "sku": "ED-CH-KHK-34",
+          "size": "34",
+          "color": "Khaki",
+          "inventory": 25
+        },
+        {
+          "sku": "ED-CH-NVY-32",
+          "size": "32",
+          "color": "Navy",
+          "inventory": 18
+        },
+        {
+          "sku": "ED-CH-NVY-34",
+          "size": "34",
+          "color": "Navy",
+          "inventory": 22
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Puffer Winter Coat",
+      "description": "Insulated winter coat designed for cold climates.",
+      "brandId": "arcticwear",
+      "categoryId": "coats",
+      "gender": "unisex",
+      "price": 299.99,
+      "salePrice": 249.99,
+      "currency": "USD",
+      "rating": 4.7,
+      "reviewCount": 103,
+      "keywords": ["puffer coat", "winter jacket", "insulated coat"],
+      "tags": ["winter", "insulated", "outerwear"],
+      "images": ["/images/products/puffer-coat.jpg"],
+      "variants": [
+        {
+          "sku": "AW-PC-BLK-M",
+          "size": "M",
+          "color": "Black",
+          "inventory": 16
+        },
+        {
+          "sku": "AW-PC-BLK-L",
+          "size": "L",
+          "color": "Black",
+          "inventory": 20
+        },
+        {
+          "sku": "AW-PC-OLV-M",
+          "size": "M",
+          "color": "Olive",
+          "inventory": 14
+        },
+        { "sku": "AW-PC-OLV-L", "size": "L", "color": "Olive", "inventory": 18 }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Canvas Backpack",
+      "description": "Durable canvas backpack with multiple compartments.",
+      "brandId": "trailpack",
+      "categoryId": "accessories",
+      "gender": "unisex",
+      "price": 69.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.5,
+      "reviewCount": 89,
+      "keywords": ["canvas backpack", "travel backpack"],
+      "tags": ["travel", "durable", "everyday"],
+      "images": ["/images/products/backpack.jpg"],
+      "variants": [
+        {
+          "sku": "TP-BP-GRN-OS",
+          "size": "One Size",
+          "color": "Green",
+          "inventory": 30
+        },
+        {
+          "sku": "TP-BP-BLK-OS",
+          "size": "One Size",
+          "color": "Black",
+          "inventory": 28
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Minimalist Wrist Watch",
+      "description": "Clean design wristwatch with leather strap.",
+      "brandId": "timeform",
+      "categoryId": "accessories",
+      "gender": "unisex",
+      "price": 149.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.6,
+      "reviewCount": 120,
+      "keywords": ["minimalist watch", "leather strap watch"],
+      "tags": ["minimal", "accessory", "gift"],
+      "images": ["/images/products/watch.jpg"],
+      "variants": [
+        {
+          "sku": "TF-WT-BLK-OS",
+          "size": "One Size",
+          "color": "Black",
+          "inventory": 22
+        },
+        {
+          "sku": "TF-WT-BRN-OS",
+          "size": "One Size",
+          "color": "Brown",
+          "inventory": 20
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Casual Slip-On Loafers",
+      "description": "Comfortable loafers suitable for casual wear.",
+      "brandId": "easystep",
+      "categoryId": "shoes",
+      "gender": "men",
+      "price": 99.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.2,
+      "reviewCount": 46,
+      "keywords": ["slip-on loafers", "casual loafers"],
+      "tags": ["casual", "comfort"],
+      "images": ["/images/products/loafers.jpg"],
+      "variants": [
+        { "sku": "ES-LF-TAN-9", "size": "9", "color": "Tan", "inventory": 12 },
+        {
+          "sku": "ES-LF-TAN-10",
+          "size": "10",
+          "color": "Tan",
+          "inventory": 14
+        },
+        { "sku": "ES-LF-TAN-11", "size": "11", "color": "Tan", "inventory": 10 }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Ribbed Tank Top",
+      "description": "Soft ribbed tank top ideal for layering or warm weather.",
+      "brandId": "essentialwear",
+      "categoryId": "tops",
+      "gender": "women",
+      "price": 24.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 1.0,
+      "reviewCount": 33,
+      "keywords": ["ribbed tank top", "summer tank"],
+      "tags": ["layering", "summer", "basic"],
+      "images": ["/images/products/tank-top.jpg"],
+      "variants": [
+        {
+          "sku": "EW-TK-BLK-S",
+          "size": "S",
+          "color": "Black",
+          "inventory": 20
+        },
+        {
+          "sku": "EW-TK-BLK-M",
+          "size": "M",
+          "color": "Black",
+          "inventory": 24
+        },
+        { "sku": "EW-TK-WHT-M", "size": "M", "color": "White", "inventory": 22 }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Pleated Midi Skirt",
+      "description": "Flowy midi skirt with elegant pleats.",
+      "brandId": "lunastyle",
+      "categoryId": "skirts",
+      "gender": "women",
+      "price": 79.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 3.7,
+      "reviewCount": 51,
+      "keywords": ["midi skirt", "pleated skirt"],
+      "tags": ["elegant", "flowy"],
+      "images": ["/images/products/midi-skirt.jpg"],
+      "variants": [
+        {
+          "sku": "LS-SK-BEI-S",
+          "size": "S",
+          "color": "Beige",
+          "inventory": 14
+        },
+        {
+          "sku": "LS-SK-BEI-M",
+          "size": "M",
+          "color": "Beige",
+          "inventory": 18
+        },
+        { "sku": "LS-SK-BLK-M", "size": "M", "color": "Black", "inventory": 16 }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Graphic Print Sweatshirt",
+      "description": "Cotton sweatshirt featuring a bold graphic print.",
+      "brandId": "streetform",
+      "categoryId": "sweatshirts",
+      "gender": "unisex",
+      "price": 64.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 4.3,
+      "reviewCount": 72,
+      "keywords": ["graphic sweatshirt", "printed sweatshirt"],
+      "tags": ["streetwear", "graphic"],
+      "images": ["/images/products/graphic-sweatshirt.jpg"],
+      "variants": [
+        {
+          "sku": "SF-SW-BLK-M",
+          "size": "M",
+          "color": "Black",
+          "inventory": 18
+        },
+        {
+          "sku": "SF-SW-BLK-L",
+          "size": "L",
+          "color": "Black",
+          "inventory": 20
+        },
+        { "sku": "SF-SW-GRY-L", "size": "L", "color": "Gray", "inventory": 16 }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Lightweight Windbreaker",
+      "description": "Water-resistant windbreaker for transitional weather.",
+      "brandId": "activeline",
+      "categoryId": "jackets",
+      "gender": "unisex",
+      "price": 109.99,
+      "salePrice": null,
+      "currency": "USD",
+      "rating": 2.5,
+      "reviewCount": 65,
+      "keywords": ["windbreaker jacket", "lightweight jacket"],
+      "tags": ["outdoor", "water-resistant"],
+      "images": ["/images/products/windbreaker.jpg"],
+      "variants": [
+        { "sku": "AL-WB-BLU-M", "size": "M", "color": "Blue", "inventory": 20 },
+        { "sku": "AL-WB-BLU-L", "size": "L", "color": "Blue", "inventory": 22 },
+        { "sku": "AL-WB-BLK-M", "size": "M", "color": "Black", "inventory": 18 }
+      ]
+    }
+  ]
+}
