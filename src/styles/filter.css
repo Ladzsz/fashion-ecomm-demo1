@@ -52,6 +52,7 @@
   background-color: black;
   padding: 5px;
   border-radius: 8px;
+  flex-wrap: wrap;
 }
 
 .color-swatch {

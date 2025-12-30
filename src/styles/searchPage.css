@@ -42,7 +42,7 @@
   .srp-filters {
     position: fixed;
     inset: 0;
-    width: 100%;
+    width: 83%;
     height: 100vh;
     background: #fff;
     z-index: 1000;
