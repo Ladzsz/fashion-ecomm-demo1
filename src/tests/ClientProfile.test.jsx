@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import ClientProfile from '../ClientProfile.jsx';
+import ClientProfile from '../components/ClientProfile';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 
 const mockCrmData = {

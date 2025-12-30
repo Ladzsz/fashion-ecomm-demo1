@@ -1,7 +1,7 @@
 // src/__tests__/CreateAppointment.test.jsx
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import CreateAppointment from '../CreateAppointment';
+import CreateAppointment from '../components/CreateAppointment';
 
 // Mock uuid to return predictable IDs
 vi.mock('uuid', () => ({

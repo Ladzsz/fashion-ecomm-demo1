@@ -8,7 +8,7 @@ import AdminCRM from './AdminCRM';
 import Navbar from './Navbar';
 import Chatbot from './Chatbot';
 import ClientProfile from './ClientProfile';
-import { initialCrmData } from './crmData';
+import { initialCrmData } from '../data/crmData';
 import { SearchRoute } from './Searchroute';
 
 const App = () => {
@@ -40,8 +40,8 @@ const App = () => {
   } else {
     localStorage.setItem('crmData', JSON.stringify(initialCrmData));
   }
-  setLoading(false);
-}, []);
+    setLoading(false);
+  }, []);
 
   //end debugging
 
@@ -73,20 +73,21 @@ const App = () => {
     }
     setLoading(false);
   }, []);
+
   useEffect(() => {
-  const stored = localStorage.getItem('crmData');
-  if (stored) {
-    const parsed = JSON.parse(stored);
-    setCrmData({
-      ...initialCrmData, // ensures new keys like appointments
-      ...parsed,
-      appointments: parsed.appointments || initialCrmData.appointments || [],
-      activities: parsed.activities || initialCrmData.activities || [],
-    });
-  } else {
-    setCrmData(initialCrmData);
-  }
-}, []);
+    const stored = localStorage.getItem('crmData');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      setCrmData({
+        ...initialCrmData, // ensures new keys like appointments
+        ...parsed,
+        appointments: parsed.appointments || initialCrmData.appointments || [],
+        activities: parsed.activities || initialCrmData.activities || [],
+      });
+    } else {
+      setCrmData(initialCrmData);
+    }
+  }, []);
 
   const updateCrmData = (newData) => {
     localStorage.setItem('crmData', JSON.stringify(newData));
@@ -232,7 +233,7 @@ export default App;
 //       </button>
 //       {showChatbot && <Chatbot />}
 //     </Router>
-//   );
+//   ); 
 // };
 
 // export default App;

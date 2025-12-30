@@ -1,11 +1,11 @@
-import brands from "./brands.json";
+import brands from "../data/brands.json";
 import {
   getPriceBounds,
   getAvailableSizes,
   getAvailableColors,
   getRatingSteps,
-} from "./filterOptions";
-import "./assets/styles/filter.css";
+} from "../utils/filterOptions";
+import "../styles/filter.css";
 import { CircularProgress, Box } from "@mui/material";
 
 export default function FiltersPanel({

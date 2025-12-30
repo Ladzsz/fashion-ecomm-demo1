@@ -1,7 +1,7 @@
 // OrderWizard.jsx
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { initialCrmData } from './crmData';
+import { initialCrmData } from '../data/crmData';
 
 const steps = [
   'Client & Type',

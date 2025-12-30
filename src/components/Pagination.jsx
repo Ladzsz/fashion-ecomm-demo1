@@ -1,4 +1,4 @@
-import "./assets/styles/pagination.css";
+import "../styles/pagination.css";
 
 export default function Pagination({
   page = 1,

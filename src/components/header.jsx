@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import "./assets/styles/headerstyles.css";
+import "../styles/headerstyles.css";
 
 export default function Header({ sortOption, onSortChange }) {
   if (typeof onSortChange !== "function") return null;

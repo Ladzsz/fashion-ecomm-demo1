@@ -1,7 +1,7 @@
 import EmptyState from "./searchPage";
 import StarRating from "./starRating";
 import LibraryWishlistButton from "./wishlist";
-import "./assets/styles/results.css";
+import "../styles/results.css";
 import { Skeleton } from "@mui/material";
 
 function ResultsSkeletonCard() {
