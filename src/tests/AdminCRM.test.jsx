@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import AdminCRM from '../AdminCRM.jsx';
+import AdminCRM from '../components/AdminCRM';
 import { MemoryRouter } from 'react-router-dom';
 
 const mockCrmData = {

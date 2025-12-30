@@ -8,7 +8,7 @@ import AdminCRM from './AdminCRM';
 import Navbar from './Navbar';
 import Chatbot from './Chatbot';
 import ClientProfile from './ClientProfile';
-import { initialCrmData } from './crmData';
+import { initialCrmData } from '../data/crmData';
 import { SearchRoute } from './Searchroute';
 
 const App = () => {

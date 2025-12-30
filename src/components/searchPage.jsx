@@ -1,14 +1,14 @@
 import { useSearchParams } from "react-router-dom";
-import products from "./products.json"
+import products from "../data/products.json"
 import SearchSummary from "./SearchSummary";
 import FiltersPanel from "./FiltersPanel";
 import ResultsGrid from "./ResultsGrid";
 import Pagination from "./Pagination";
-import { tokenize } from "./SearchHelper";
-import { sortProducts } from "./dropdownhelper";
-import "./assets/styles/searchPage.css";
+import { tokenize } from "../utils/SearchHelper";
+import { sortProducts } from "../utils/dropdownhelper";
+import "../styles/searchPage.css";
 import { useState, useEffect } from "react";
-import { createFilterHandlers } from "./filterHelpers";
+import { createFilterHandlers } from "../utils/filterHelpers";
 import { FilterToggleButton } from "./filterBtn";
 import {
   filterByBrands,
@@ -16,7 +16,7 @@ import {
   filterBySizes,
   filterByColors,
   filterByRating,
-} from "./productFilters";
+} from "../utils/productFilters";
 
 const PAGE_SIZE = 10;
 

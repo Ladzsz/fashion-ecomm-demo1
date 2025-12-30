@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Login from '../Login.jsx';
+import Login from '../components/Login';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Login', () => {

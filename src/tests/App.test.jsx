@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import App from '../App.jsx';
+import App from '../components/App';
 import { MemoryRouter } from 'react-router-dom';
 
 vi.mock('react-router-dom', async () => {

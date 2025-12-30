@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import ReferralTree from '../ReferralTree.jsx';
+import ReferralTree from '../components/ReferralTree';
 
 const mockData = {
   clients: [
