@@ -1,15 +1,15 @@
 import { useSearchParams } from "react-router-dom";
-import products from "../data/products.json"
-import SearchSummary from "./SearchSummary";
-import FiltersPanel from "./FiltersPanel";
-import ResultsGrid from "./ResultsGrid";
-import Pagination from "./Pagination";
+import products from "../data/products.json";
+import SearchSummary from "../components/SearchSummary";
+import FiltersPanel from "../components/FiltersPanel";
+import ResultsGrid from "../components/ResultsGrid";
+import Pagination from "../components/Pagination";
 import { tokenize } from "../utils/SearchHelper";
 import { sortProducts } from "../utils/dropdownhelper";
 import "../styles/searchPage.css";
 import { useState, useEffect } from "react";
 import { createFilterHandlers } from "../utils/filterHelpers";
-import { FilterToggleButton } from "./filterBtn";
+import { FilterToggleButton } from "../components/filterBtn";
 import {
   filterByBrands,
   filterByPrice,
@@ -18,10 +18,14 @@ import {
   filterByRating,
 } from "../utils/productFilters";
 
+type SearchPageProps = {
+  sortOption: string;
+};
+
 const PAGE_SIZE = 10;
 
-/* Empty state */
-export function EmptyState({ query }) {
+//function to display no results
+export function EmptyState({ query }: { query?: string }) {
   return (
     <section className="srp-empty">
       <h2>No results found</h2>
@@ -36,22 +40,22 @@ export function EmptyState({ query }) {
   );
 }
 
-/* Search logic */
-export function searchProducts(items = [], query = "") {
-  if (!query || !Array.isArray(items)) return items;
+//function to return search results
+export function searchProducts(products: any[], query: string) {
+  if (!query) return products;
 
   const queryTokens = tokenize(query);
 
-  return items.filter((product) => {
+  return products.filter((product) => {
     const haystackTokens = tokenize(
       [
-        product?.name,
-        product?.description,
-        product?.categoryId,
-        product?.brandId,
-        product?.gender,
-        ...(product?.keywords ?? []),
-        ...(product?.tags ?? []),
+        product.name,
+        product.description,
+        product.categoryId,
+        product.brandId,
+        product.gender,
+        ...(product.keywords ?? []),
+        ...(product.tags ?? []),
       ].join(" ")
     );
 
@@ -59,52 +63,54 @@ export function searchProducts(items = [], query = "") {
   });
 }
 
-/* Page component */
-export default function SearchPage({ sortOption }) {
-  const [isloading, setIsLoading] = useState(false);
-  const [filtersOpen, setFiltersOpen] = useState(false);
-  const [selectedBrands, setSelectedBrands] = useState([]);
-  const [selectedSizes, setSelectedSizes] = useState([]);
-  const [selectedColors, setSelectedColors] = useState([]);
-  const [selectedRating, setSelectedRating] = useState(null);
-  const [params, setParams] = useSearchParams();
+//function to render the search page
+export default function SearchPage({ sortOption }: SearchPageProps) {
+  {
+    /*setting states*/
+  }
 
+  const [isloading, setisloading] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+  const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [params, setParams] = useSearchParams();
   const query = params.get("q") ?? "";
   const page = Number(params.get("page") ?? "1");
+  const [price, setPrice] = useState<{
+    min: number | null;
+    max: number | null;
+  }>({
+    min: null,
+    max: null,
+  });
 
-  const [price, setPrice] = useState({ min: null, max: null });
-
-  /* simulate loading */
+  // use effect to simulate the the loading changing.
   useEffect(() => {
-  let cancelled = false;
+    setisloading(true);
 
-  const load = async () => {
-    if (!cancelled) setIsLoading(true);
+    const id = setTimeout(() => {
+      setisloading(false);
+    }, 0);
 
-    await Promise.resolve(); // async boundary
+    return () => clearTimeout(id);
+  }, [
+    query,
+    selectedBrands,
+    selectedSizes,
+    selectedColors,
+    selectedRating,
+    price.min,
+    price.max,
+    sortOption,
+    page,
+  ]);
 
-    if (!cancelled) setIsLoading(false);
-  };
-
-  load();
-
-  return () => {
-    cancelled = true;
-  };
-}, [
-  query,
-  selectedBrands,
-  selectedSizes,
-  selectedColors,
-  selectedRating,
-  price.min,
-  price.max,
-  sortOption,
-  page,
-]);
-
-  /* results pipeline */
-  let results = searchProducts(products?.products ?? [], query);
+  {
+    /*setting results*/
+  }
+  let results = searchProducts(products.products, query);
   results = filterByBrands(results, selectedBrands);
   results = filterByPrice(results, price.min, price.max);
   results = filterBySizes(results, selectedSizes);
@@ -117,7 +123,9 @@ export default function SearchPage({ sortOption }) {
   const start = (page - 1) * PAGE_SIZE;
   const paginatedResults = results.slice(start, start + PAGE_SIZE);
 
-  /* handlers */
+  {
+    /*passing state updater through helpers*/
+  }
   const {
     goToPage,
     handleBrandChange,
@@ -156,7 +164,7 @@ export default function SearchPage({ sortOption }) {
           onColorToggle={handleColorToggle}
           selectedRating={selectedRating}
           onRatingChange={setSelectedRating}
-          products={products?.products ?? []}
+          products={products.products}
           isOpen={filtersOpen}
           onClose={() => setFiltersOpen(false)}
           isloading={isloading}

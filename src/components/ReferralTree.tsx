@@ -1,53 +1,95 @@
-import React from 'react';
+interface Client {
+  client_id: number;
+  first_name: string;
+  last_name: string;
+  referred_by_id?: number | null;
+  vip_status?: boolean;
+}
 
-const ReferralTree = ({ crmData }) => {
-  if (!crmData || !crmData.clients) return <p>No referral data</p>;
+interface Order {
+  client_id: number;
+  total_price?: number;
+}
 
-  const getRevenue = (clientId) => {
+interface CRMData {
+  clients: Client[];
+  orders: Order[];
+}
+
+interface ReferralTreeProps {
+  crmData?: CRMData | null;
+}
+
+export default function ReferralTree({ crmData }: ReferralTreeProps) {
+  if (!crmData || !crmData.clients) {
+    return <p>No referral data</p>;
+  }
+
+  const getRevenue = (clientId: number): number => {
     return crmData.orders
-      .filter(o => o.client_id === clientId)
-      .reduce((sum, o) => sum + (o.total_price || 0), 0);
+      .filter((o) => o.client_id === clientId)
+      .reduce((sum, o) => sum + (o.total_price ?? 0), 0);
   };
 
-  const buildTree = (clientId, visited = new Set()) => {
+  const buildTree = (
+    clientId: number,
+    visited: Set<number> = new Set()
+  ) => {
     if (visited.has(clientId)) return null; // Prevent cycles
     visited.add(clientId);
 
-    const client = crmData.clients.find(c => c.client_id === clientId);
+    const client = crmData.clients.find(
+      (c) => c.client_id === clientId
+    );
     if (!client) return null;
 
     const directRevenue = getRevenue(clientId);
-    const referrals = crmData.clients.filter(c => c.referred_by_id === clientId);
+    const referrals = crmData.clients.filter(
+      (c) => c.referred_by_id === clientId
+    );
 
     return (
-      <li key={clientId} style={{ marginLeft: '20px', marginBottom: '10px' }}>
-        <strong>{client.first_name} {client.last_name}</strong> 
-        {' '}– Direct: ${directRevenue} 
-        {client.vip_status && <span style={{ color: '#e91e63' }}> (VIP)</span>}
+      <li
+        key={clientId}
+        style={{ marginLeft: "20px", marginBottom: "10px" }}
+      >
+        <strong>
+          {client.first_name} {client.last_name}
+        </strong>{" "}
+        – Direct: ${directRevenue}
+        {client.vip_status && (
+          <span style={{ color: "#e91e63" }}> (VIP)</span>
+        )}
         {referrals.length > 0 && (
-          <ul style={{ margin: '10px 0', paddingLeft: '20px' }}>
-            {referrals.map(ref => buildTree(ref.client_id, new Set(visited)))}
+          <ul style={{ margin: "10px 0", paddingLeft: "20px" }}>
+            {referrals.map((ref) =>
+              buildTree(ref.client_id, new Set(visited))
+            )}
           </ul>
         )}
       </li>
     );
   };
 
-  const roots = crmData.clients.filter(c => !c.referred_by_id || c.referred_by_id === null);
+  const roots = crmData.clients.filter(
+    (c) => c.referred_by_id == null
+  );
 
   return (
-    <div className="card" style={{ marginTop: '20px' }}>
+    <div className="card" style={{ marginTop: "20px" }}>
       <h3>Referral Network</h3>
-      {roots.length === 0 ? <p>No clients with referrals</p> : 
-        <ul style={{ paddingLeft: '20px' }}>
-          {roots.map(root => buildTree(root.client_id))}
+
+      {roots.length === 0 ? (
+        <p>No clients with referrals</p>
+      ) : (
+        <ul style={{ paddingLeft: "20px" }}>
+          {roots.map((root) => buildTree(root.client_id))}
         </ul>
-      }
+      )}
     </div>
   );
-};
+}
 
-export default ReferralTree;
 
 
 // import React from 'react';

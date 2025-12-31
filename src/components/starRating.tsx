@@ -1,6 +1,13 @@
+import React from "react";
+import { BiFontSize } from "react-icons/bi";
 import { FaStar } from "react-icons/fa";
 
-const StarRating = ({ rating = 0, reviewCount = 0 }) => {
+interface StarRatingProps {
+  rating: number;
+  reviewCount: number;
+}
+
+const StarRating = ({ rating, reviewCount }: StarRatingProps) => {
   const totalStars = 5;
 
   const colors = {
@@ -24,9 +31,7 @@ const StarRating = ({ rating = 0, reviewCount = 0 }) => {
           <FaStar
             key={index}
             size={8}
-            color={
-              currentRatingValue <= rating ? colors.orange : colors.grey
-            }
+            color={currentRatingValue <= rating ? colors.orange : colors.grey}
             style={{ marginRight: 4, cursor: "default" }}
           />
         );

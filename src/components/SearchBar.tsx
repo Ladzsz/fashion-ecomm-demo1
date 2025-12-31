@@ -6,7 +6,7 @@ export default function SearchBar() {
   const navigate = useNavigate();
   const [value, setValue] = useState("");
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const query = value.trim();

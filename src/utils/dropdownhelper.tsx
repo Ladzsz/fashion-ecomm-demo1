@@ -1,5 +1,4 @@
-export function sortProducts(products, sortOption) {
-  if (!Array.isArray(products)) return [];
+export function sortProducts(products: any[], sortOption: string) {
   const sorted = [...products];
 
   switch (sortOption) {

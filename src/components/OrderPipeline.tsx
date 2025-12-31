@@ -1,5 +1,5 @@
 // Updated src/OrderPipeline.jsx (adds data-testid for reliable testing + minor cleanup)
-import React, { useState } from 'react';
+import { useState } from "react";
 import {
   DndContext,
   closestCorners,
@@ -9,26 +9,85 @@ import {
   useSensor,
   useSensors,
   DragOverlay,
-} from '@dnd-kit/core';
+  DragStartEvent,
+  DragEndEvent,
+} from "@dnd-kit/core";
 import {
   SortableContext,
   useSortable,
   verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
-import { useDroppable } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
+} from "@dnd-kit/sortable";
+import { useDroppable } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
+
+/* -----------------------------
+   Types
+--------------------------------*/
+
+interface Client {
+  client_id: number;
+  first_name: string;
+  last_name: string;
+}
+
+interface Fabric {
+  fabric_id: number;
+  name: string;
+  supplier?: string;
+}
+
+interface Order {
+  order_id: string;
+  client_id: number;
+  fabric_id?: number | null;
+  order_type: string;
+  status: string;
+  total_price: number;
+  deposit_paid?: number;
+  balance_due?: number;
+  photos?: string[];
+}
+
+interface CRMData {
+  clients: Client[];
+  fabrics?: Fabric[];
+  orders: Order[];
+}
+
+interface SortableOrderCardProps {
+  order: Order;
+  client?: Client;
+  fabric?: Fabric;
+}
+
+interface OrderPipelineProps {
+  crmData: CRMData;
+  updateCrmData: (data: CRMData) => void;
+}
+
+/* -----------------------------
+   Constants
+--------------------------------*/
 
 const statuses = [
-  'Consultation',
-  'Fabric Selected',
-  'In Production',
-  'First Fitting',
-  'Final Fitting',
-  'Ready',
-  'Picked Up',
+  "Consultation",
+  "Fabric Selected",
+  "In Production",
+  "First Fitting",
+  "Final Fitting",
+  "Ready",
+  "Picked Up",
 ];
 
-const SortableOrderCard = ({ order, client, fabric }) => {
+/* -----------------------------
+   Sortable card
+--------------------------------*/
+
+function SortableOrderCard({
+  order,
+  client,
+  fabric,
+}: SortableOrderCardProps) {
   const {
     attributes,
     listeners,
@@ -38,17 +97,17 @@ const SortableOrderCard = ({ order, client, fabric }) => {
     isDragging,
   } = useSortable({ id: order.order_id });
 
-  const style = {
+  const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
-    margin: '12px 0',
-    padding: '16px',
-    background: 'white',
-    borderRadius: '12px',
+    margin: "12px 0",
+    padding: "16px",
+    background: "white",
+    borderRadius: "12px",
     boxShadow: isDragging
-      ? '0 10px 30px rgba(0,0,0,0.2)'
-      : '0 4px 15px rgba(0,0,0,0.1)',
-    cursor: 'grab',
+      ? "0 10px 30px rgba(0,0,0,0.2)"
+      : "0 4px 15px rgba(0,0,0,0.1)",
+    cursor: "grab",
     opacity: isDragging ? 0.8 : 1,
   };
 
@@ -61,82 +120,136 @@ const SortableOrderCard = ({ order, client, fabric }) => {
       data-testid={`order-card-${order.order_id}`}
       className="card"
     >
-      <strong>{client?.first_name ?? 'Unknown'} {client?.last_name ?? ''}</strong>
+      <strong>
+        {client?.first_name ?? "Unknown"}{" "}
+        {client?.last_name ?? ""}
+      </strong>
       <br />
       {order.order_type}
       <br />
       {fabric?.name && (
-        <>Fabric: {fabric.name} ({fabric.supplier})<br /></>
+        <>
+          Fabric: {fabric.name}
+          {fabric.supplier && ` (${fabric.supplier})`}
+          <br />
+        </>
       )}
-      ${order.total_price} (Balance: ${order.balance_due ?? order.total_price - (order.deposit_paid ?? 0)})
-      {order.photos?.length > 0 && (
-        <div style={{ marginTop: '10px' }}>
-          <img src={order.photos[0]} alt="Order" style={{ width: '100%', maxWidth: '150px', borderRadius: '8px' }} />
+      ${order.total_price}{" "}
+      (Balance: $
+      {order.balance_due ??
+        order.total_price -
+          (order.deposit_paid ?? 0)}
+      )
+      {order.photos?.length ? (
+        <div style={{ marginTop: "10px" }}>
+          <img
+            src={order.photos[0]}
+            alt="Order"
+            style={{
+              width: "100%",
+              maxWidth: "150px",
+              borderRadius: "8px",
+            }}
+          />
         </div>
-      )}
+      ) : null}
     </div>
   );
-};
+}
 
-const OrderPipeline = ({ crmData, updateCrmData }) => {
-  const [activeId, setActiveId] = useState(null);
+/* -----------------------------
+   Pipeline
+--------------------------------*/
+
+export default function OrderPipeline({
+  crmData,
+  updateCrmData,
+}: OrderPipelineProps) {
+  const [activeId, setActiveId] = useState<string | null>(
+    null
+  );
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 8,
-      },
+      activationConstraint: { distance: 8 },
     }),
     useSensor(TouchSensor, {
-      activationConstraint: {
-        delay: 200,
-        tolerance: 8,
-      },
+      activationConstraint: { delay: 200, tolerance: 8 },
     }),
     useSensor(KeyboardSensor)
   );
 
-  const handleDragStart = (event) => {
-    setActiveId(event.active.id);
+  const handleDragStart = (
+    event: DragStartEvent
+  ): void => {
+    setActiveId(String(event.active.id));
   };
 
-  const handleDragEnd = (event) => {
+  const handleDragEnd = (
+    event: DragEndEvent
+  ): void => {
     const { active, over } = event;
+
     if (!over) {
       setActiveId(null);
       return;
     }
 
-    const activeOrderId = active.id;
-    const overId = over.id;
+    const activeOrderId = String(active.id);
+    const overId = String(over.id);
 
-    const activeOrder = crmData.orders.find((o) => o.order_id === activeOrderId);
+    const activeOrder = crmData.orders.find(
+      (o) => o.order_id === activeOrderId
+    );
+
     if (!activeOrder) {
       setActiveId(null);
       return;
     }
 
     let targetStatus = activeOrder.status;
+
     if (statuses.includes(overId)) {
       targetStatus = overId;
     } else {
-      const overOrder = crmData.orders.find((o) => o.order_id === overId);
-      if (overOrder) targetStatus = overOrder.status;
+      const overOrder = crmData.orders.find(
+        (o) => o.order_id === overId
+      );
+      if (overOrder) {
+        targetStatus = overOrder.status;
+      }
     }
 
     if (targetStatus !== activeOrder.status) {
-      const newOrders = crmData.orders.map((o) =>
-        o.order_id === activeOrderId ? { ...o, status: targetStatus } : o
+      const newOrders = crmData.orders.map(
+        (o) =>
+          o.order_id === activeOrderId
+            ? { ...o, status: targetStatus }
+            : o
       );
-      updateCrmData({ ...crmData, orders: newOrders });
+
+      updateCrmData({
+        ...crmData,
+        orders: newOrders,
+      });
     }
 
     setActiveId(null);
   };
 
-  const activeOrder = crmData.orders.find((o) => o.order_id === activeId);
-  const getClient = (client_id) => crmData.clients.find((c) => c.client_id === client_id);
-  const getFabric = (fabric_id) => crmData.fabrics?.find((f) => f.fabric_id === fabric_id);
+  const activeOrder = crmData.orders.find(
+    (o) => o.order_id === activeId
+  );
+
+  const getClient = (client_id: number) =>
+    crmData.clients.find(
+      (c) => c.client_id === client_id
+    );
+
+  const getFabric = (fabric_id?: number | null) =>
+    crmData.fabrics?.find(
+      (f) => f.fabric_id === fabric_id
+    );
 
   return (
     <DndContext
@@ -145,54 +258,86 @@ const OrderPipeline = ({ crmData, updateCrmData }) => {
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <div style={{ display: 'flex', overflowX: 'auto', padding: '20px 0' }}>
+      <div
+        style={{
+          display: "flex",
+          overflowX: "auto",
+          padding: "20px 0",
+        }}
+      >
         {statuses.map((status) => {
-          const ordersInStatus = crmData.orders.filter((o) => o.status === status);
+          const ordersInStatus =
+            crmData.orders.filter(
+              (o) => o.status === status
+            );
 
-          const { isOver, setNodeRef } = useDroppable({
-            id: status,
-          });
+          const { isOver, setNodeRef } =
+            useDroppable({ id: status });
 
           return (
             <div
               key={status}
               ref={setNodeRef}
-              data-testid={`pipeline-column-${status.replace(/ /g, '-')}`}
+              data-testid={`pipeline-column-${status.replace(
+                / /g,
+                "-"
+              )}`}
               style={{
-                minWidth: '340px',
-                marginRight: '24px',
-                backgroundColor: isOver ? '#e3f2fd' : '#f5f5f5',
-                borderRadius: '16px',
-                padding: '16px',
-                transition: 'background-color 0.2s ease',
+                minWidth: "340px",
+                marginRight: "24px",
+                backgroundColor: isOver
+                  ? "#e3f2fd"
+                  : "#f5f5f5",
+                borderRadius: "16px",
+                padding: "16px",
+                transition:
+                  "background-color 0.2s ease",
               }}
             >
-              <h3 style={{ textAlign: 'center', margin: '0 0 20px 0', fontSize: '18px' }}>
+              <h3
+                style={{
+                  textAlign: "center",
+                  margin: "0 0 20px",
+                  fontSize: "18px",
+                }}
+              >
                 {status} ({ordersInStatus.length})
               </h3>
 
               <SortableContext
-                items={ordersInStatus.map((o) => o.order_id)}
-                strategy={verticalListSortingStrategy}
+                items={ordersInStatus.map(
+                  (o) => o.order_id
+                )}
+                strategy={
+                  verticalListSortingStrategy
+                }
               >
-                {ordersInStatus.map((order) => {
-                  const client = getClient(order.client_id);
-                  const fabric = getFabric(order.fabric_id);
-
-                  return (
-                    <SortableOrderCard
-                      key={order.order_id}
-                      order={order}
-                      client={client}
-                      fabric={fabric}
-                    />
-                  );
-                })}
+                {ordersInStatus.map((order) => (
+                  <SortableOrderCard
+                    key={order.order_id}
+                    order={order}
+                    client={getClient(
+                      order.client_id
+                    )}
+                    fabric={getFabric(
+                      order.fabric_id
+                    )}
+                  />
+                ))}
               </SortableContext>
 
-              {isOver && ordersInStatus.length === 0 && (
-                <div style={{ height: '100px', border: '2px dashed #90caf9', borderRadius: '12px', margin: '12px 0' }} />
-              )}
+              {isOver &&
+                ordersInStatus.length === 0 && (
+                  <div
+                    style={{
+                      height: "100px",
+                      border:
+                        "2px dashed #90caf9",
+                      borderRadius: "12px",
+                      margin: "12px 0",
+                    }}
+                  />
+                )}
             </div>
           );
         })}
@@ -203,23 +348,38 @@ const OrderPipeline = ({ crmData, updateCrmData }) => {
           <div
             className="card"
             style={{
-              padding: '16px',
-              background: 'white',
-              borderRadius: '12px',
-              boxShadow: '0 15px 40px rgba(0,0,0,0.3)',
-              rotate: '5deg',
+              padding: "16px",
+              background: "white",
+              borderRadius: "12px",
+              boxShadow:
+                "0 15px 40px rgba(0,0,0,0.3)",
+              rotate: "5deg",
             }}
           >
             {(() => {
-              const client = getClient(activeOrder.client_id);
-              const fabric = getFabric(activeOrder.fabric_id);
+              const client = getClient(
+                activeOrder.client_id
+              );
+              const fabric = getFabric(
+                activeOrder.fabric_id
+              );
+
               return (
                 <>
-                  <strong>{client?.first_name ?? 'Unknown'} {client?.last_name ?? ''}</strong>
+                  <strong>
+                    {client?.first_name ??
+                      "Unknown"}{" "}
+                    {client?.last_name ?? ""}
+                  </strong>
                   <br />
                   {activeOrder.order_type}
                   <br />
-                  {fabric?.name && <>Fabric: {fabric.name}<br /></>}
+                  {fabric?.name && (
+                    <>
+                      Fabric: {fabric.name}
+                      <br />
+                    </>
+                  )}
                   ${activeOrder.total_price}
                 </>
               );
@@ -229,9 +389,8 @@ const OrderPipeline = ({ crmData, updateCrmData }) => {
       </DragOverlay>
     </DndContext>
   );
-};
+}
 
-export default OrderPipeline;
 //3
 // Fixed version of src/OrderPipeline.jsx
 // This implementation fixes the drag-and-drop bugs:

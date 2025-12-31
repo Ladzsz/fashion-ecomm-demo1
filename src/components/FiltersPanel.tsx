@@ -8,39 +8,64 @@ import {
 import "../styles/filter.css";
 import { CircularProgress, Box } from "@mui/material";
 
-export default function FiltersPanel({
+type FiltersPanelProps = {
   /* BRAND */
-  selectedBrands = [],
-  onBrandChange,
+  selectedBrands: string[];
+  onBrandChange: (brandId: string) => void;
 
   /* PRICE */
-  price = { min: null, max: null },
-  onPriceChange,
+  price: {
+    min: number | null;
+    max: number | null;
+  };
+  onPriceChange: (type: "min" | "max", value: string) => void;
 
   /* SIZE */
-  selectedSizes = [],
-  onSizeToggle,
+  selectedSizes: string[];
+  onSizeToggle: (size: string) => void;
 
   /* COLOR */
-  selectedColors = [],
-  onColorToggle,
+  selectedColors: string[];
+  onColorToggle: (color: string) => void;
 
   /* RATING */
-  selectedRating = null,
-  onRatingChange,
+  selectedRating: number | null;
+  onRatingChange: (rating: number | null) => void;
 
   /* DATA */
-  products = [],
+  products: any[];
 
   /* TogglePanel */
-  isOpen = false,
-  onClose,
+  isOpen: boolean;
+  onClose: () => void;
 
   /* Loading */
-  isloading = false,
-}) {
-  if (typeof onClose !== "function") return null;
+  isloading: boolean;
+};
 
+export default function FiltersPanel({
+  selectedBrands,
+  onBrandChange,
+
+  price,
+  onPriceChange,
+
+  selectedSizes,
+  onSizeToggle,
+
+  selectedColors,
+  onColorToggle,
+
+  selectedRating,
+  onRatingChange,
+
+  products,
+
+  isOpen,
+  onClose,
+
+  isloading,
+}: FiltersPanelProps) {
   const priceBounds = getPriceBounds(products);
   const sizes = getAvailableSizes(products);
   const colors = getAvailableColors(products);
@@ -62,6 +87,7 @@ export default function FiltersPanel({
       <aside className={`srp-filters ${isOpen ? "open" : ""}`}>
         <div className="filter-top">
           <h2>Filters</h2>
+
           <button onClick={onClose}>X</button>
         </div>
 
@@ -88,7 +114,7 @@ export default function FiltersPanel({
         {/* BRAND */}
         <section className="filter-group">
           <h4>Brand</h4>
-          {brands?.brands?.map((brand) => (
+          {brands.brands.map((brand) => (
             <label key={brand.id}>
               <input
                 type="checkbox"
@@ -107,9 +133,7 @@ export default function FiltersPanel({
             {sizes.map((size) => (
               <button
                 key={size}
-                className={`size-btn ${
-                  selectedSizes.includes(size) ? "active" : ""
-                }`}
+                className={`size-btn ${selectedSizes.includes(size) ? "active" : ""}`}
                 onClick={() => onSizeToggle(size)}
               >
                 {size}
@@ -151,10 +175,11 @@ export default function FiltersPanel({
                 onChange={() => onRatingChange(rating)}
               />
               {"★".repeat(rating)}
-              {"☆".repeat(5 - rating)} &nbsp;up
+              {"☆".repeat(5 - rating)} & up
             </label>
           ))}
 
+          {/* Optional clear */}
           <label>
             <input
               type="radio"

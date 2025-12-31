@@ -1,4 +1,9 @@
-export default function SearchSummary({ query = "", count = 0 }) {
+type SearchSummaryProps = {
+  query: string;
+  count: number;
+};
+
+export default function SearchSummary({ query, count }: SearchSummaryProps) {
   return (
     <section className="srp-summary">
       <h1>Search Results</h1>
