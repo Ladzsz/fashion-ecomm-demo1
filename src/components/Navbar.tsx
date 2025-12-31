@@ -112,6 +112,16 @@ export default function Navbar({
           Gallery
         </Link>
 
+        <Link
+              to="/search"
+              style={{
+                color: "white",
+                textDecoration: "none",
+              }}
+            >
+              Search
+            </Link>
+
         {isLoggedIn ? (
           <>
             <Link
@@ -152,15 +162,6 @@ export default function Navbar({
           </>
         ) : (
           <>
-            <Link
-              to="/search"
-              style={{
-                color: "white",
-                textDecoration: "none",
-              }}
-            >
-              Search
-            </Link>
 
             <Link
               to="/login"
